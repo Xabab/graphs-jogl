@@ -108,15 +108,19 @@ public class Graphs {
     }
 
     public static void addPathSecondNode(Node node){
-        if(node != null && node != path_add_first_point_temp) {
-            addPath(path_add_first_point_temp, node);
-            weight_add_temp = paths.get(paths.size() - 1);
-            Mode.setMode(Mode.MODE.WEIGHT_ADD);
+
+        for(Path p: paths){
+            if((p.getFrom() == node || p.getTo() == node) &&
+                    (p.getFrom() == path_add_first_point_temp || p.getTo() == path_add_first_point_temp)){
+                Mode.setMode(Mode.MODE.PATH_ADD);
+                path_add_first_point_temp = null;
+                return;
+            }
         }
-        else{
-            Mode.setMode(Mode.MODE.PATH_ADD);
-        }
-        path_add_first_point_temp = null;
+
+        addPath(path_add_first_point_temp, node);
+        weight_add_temp = paths.get(paths.size() - 1);
+        Mode.setMode(Mode.MODE.WEIGHT_ADD);
     }
 
     public static void weightEnter(String weight) {

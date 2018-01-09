@@ -8,6 +8,7 @@ package input;
 
 import com.jogamp.newt.event.KeyEvent;
 import com.jogamp.newt.event.KeyListener;
+import engine.GameLoop;
 import logic.Mode;
 import logic.graphs.Graphs;
 import renderer.render.Shapes;
@@ -34,6 +35,9 @@ public class KeyInput implements KeyListener{
                     break;
                 case 8:  //if BACKSPACE
                     if(!weight_temp.isEmpty()) weight_temp = weight_temp.substring(0, weight_temp.length() - 1);
+                    break;
+                case 27:
+                    GameLoop.exit();
                     break;
                 default:
                     weightKeyPress(e.getKeyChar());

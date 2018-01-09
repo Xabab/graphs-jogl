@@ -11,7 +11,7 @@ import logic.Mode;
 import static logic.Mode.MODE.*;
 import logic.graphs.Graphs;
 import renderer.render.gui.Gui;
-import renderer.render.gui.buttons.Button;
+import renderer.render.gui.Button;
 
 /**
  *

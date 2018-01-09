@@ -5,13 +5,7 @@
  */
 package renderer.render.gui;
 
-import renderer.render.gui.buttons.ButtonNodeAdd;
-import renderer.render.gui.buttons.ButtonSelectStart;
-import renderer.render.gui.buttons.ButtonNodeDelete;
-import renderer.render.gui.buttons.ButtonSelectEnd;
-import renderer.render.gui.buttons.ButtonPathAdd;
-import renderer.render.gui.buttons.Button;
-import renderer.render.gui.buttons.ButtonStart;
+import logic.Mode;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import renderer.render.Shapes;
@@ -28,12 +22,24 @@ public class Gui {
     }
 
     static final Button []menu = {
-        new ButtonNodeAdd       (10, 10, 60, 20, .7f, .7f, 0f, "Add Node"),
-        new ButtonNodeDelete    (10, 40, 60, 20, 0.8f, 0f, 0f, "Del Node"),
-        new ButtonPathAdd       (10, 70, 60, 20, 0f, 0.2f, 0f, "Add Path"),
-        new ButtonSelectStart  (10, 110, 60, 20, 0f, .7f, 0f, "Sel Srt"),
-        new ButtonSelectEnd    (10, 140, 60, 20, .9f, 0f, 0f, "Sel End"),
-        new ButtonStart        (10, 180, 60, 20, 0f, 0f, 0f, "Start")
+            new Button(10, 10, 60, 20, .7f, .7f, 0f, "Add Node") {
+                public void onClick() { Mode.setMode(Mode.MODE.NODE_ADD); }
+            },
+            new Button(10, 40, 60, 20, 0.8f, 0f, 0f, "Del Node") {
+                public void onClick() { Mode.setMode(Mode.MODE.NODE_DELETE); }
+            },
+            new Button(10, 70, 60, 20, 0f, 0.2f, 0f, "Add Path") {
+                public void onClick() { Mode.setMode(Mode.MODE.PATH_ADD); }
+            },
+            new Button(10, 110, 60, 20, 0f, .7f, 0f, "Sel Srt") {
+                public void onClick() { Mode.setMode(Mode.MODE.SEL_STA); }
+            },
+            new Button(10, 140, 60, 20, .9f, 0f, 0f, "Sel End") {
+                public void onClick() { Mode.setMode(Mode.MODE.SEL_END); }
+            },
+            new Button(10, 180, 60, 20, 0f, 0f, 0f, "Start") {
+                public void onClick() { /*Mode.setMode(Mode.MODE.);*/ }
+            }
     };
 
     public static void draw(){

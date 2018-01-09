@@ -4,6 +4,7 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import com.jogamp.opengl.util.awt.TextRenderer;
+import engine.GameLoop;
 import renderer.render.Cursor;
 import renderer.render.Nodes;
 import renderer.render.Paths;
@@ -32,11 +33,12 @@ public class EventListener implements GLEventListener {                         
         GL2 gl = drawable.getGL().getGL2();
         gl.glClear(GL2.GL_COLOR_BUFFER_BIT);                                    //cleaning up screen
 
-//        Draw.loopIteration();
+        GameLoop.loopIteration();
     }
 
     @Override
     public void dispose(GLAutoDrawable drawable) {
+        GameLoop.exit();
     }
 
     @Override

@@ -18,32 +18,26 @@ import renderer.render.Text;
 import renderer.render.gui.Gui;
 
 /**
- *
  * @author xabab
  */
 public class GameLoop {
     private static boolean running = false;
 
-    public static void start(){
+    public static void start() {
 
-        Thread thread = new Thread(){
-            @Override
-            public void run(){
-                running = true;
+        Thread thread = new Thread(() -> {
+            running = true;
 //                GLContext.makeCurrent();
 
-                while(running){
-                    loopIteration();
-                }
+            while (running) {
+                Window.render();
             }
-        };
+        });
         thread.setName("Gameloop");
         thread.start();
     }
 
-    private static void loopIteration(){
-
-        Window.render();
+    public static void loopIteration() {
 
         //draw effects for paths
 
@@ -57,30 +51,34 @@ public class GameLoop {
         Nodes.drawNodes();
 
         //draw adding weight effect
-        if(Mode.getMode() == Mode.MODE.WEIGHT_ADD){
+        if (Mode.getMode() == Mode.MODE.WEIGHT_ADD) {
             Path p = Graphs.getWeightPathTemp();
             Shapes.drawCircle(
-                    (p.getFrom().getX() + p.getTo().getX())/2,
-                    (p.getFrom().getY() + p.getTo().getY())/2,
+                    (p.getFrom().getX() + p.getTo().getX()) / 2,
+                    (p.getFrom().getY() + p.getTo().getY()) / 2,
                     30, 16, 0.4f, 0.4f, 0.4f);
-            if(!KeyInput.getWeightTemp().isEmpty()){
-            Text.textWeight(
-                    (p.getFrom().getX() + p.getTo().getX())/2,
-                    (p.getFrom().getY() + p.getTo().getY())/2,
-                    KeyInput.getWeightTemp(), 1f, 1f, 1f);
-        }
+            if (!KeyInput.getWeightTemp().isEmpty()) {
+                Text.textWeight(
+                        (p.getFrom().getX() + p.getTo().getX()) / 2,
+                        (p.getFrom().getY() + p.getTo().getY()) / 2,
+                        KeyInput.getWeightTemp(), 1f, 1f, 1f);
+            }
         }
 
 
         //draw paths cost
         Paths.drawWeights();
 
-            //draw path cost on nodes if algoritm going
+        //draw path cost on nodes if algoritm going
 
         //draw cursor
         Cursor.draw();
 
         //draw gui
         Gui.draw();
+    }
+
+    public static void exit() {
+        running = false;
     }
 }
