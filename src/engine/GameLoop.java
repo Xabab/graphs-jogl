@@ -25,6 +25,7 @@ public class GameLoop {
 
     public static void start() {
 
+
         Thread thread = new Thread(() -> {
             running = true;
 //                GLContext.makeCurrent();
