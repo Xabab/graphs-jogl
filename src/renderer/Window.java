@@ -14,11 +14,11 @@ public class Window {
     public static final int Y = 600;
 
     public static void init() {
-        GLProfile.initSingleton();                                              //idk
+        GLProfile.initSingleton();
         GLProfile profile = GLProfile.get(GLProfile.GL2);                       //choosing OpenGL 2 profile
         GLCapabilities caps = new GLCapabilities(profile);                      //getting GL2 profile capabilities
 
-        window = GLWindow.create(caps);                                         //creating an true'Ъ ogl window
+        window = GLWindow.create(caps);                                         //creating an true'Ъ opengl window
         window.setSize(X, Y);
         window.setTitle("Freaking window");
         window.setResizable(false);                                             //that cannot be resized

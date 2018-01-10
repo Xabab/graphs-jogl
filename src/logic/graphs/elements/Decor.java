@@ -27,4 +27,12 @@ public class Decor {
         col = color;
     }
 
+    public static void drawNodeDecor(Node n){
+
+    }
+
+    public static void drawPathDecor(Path p){
+
+    }
+
 }
