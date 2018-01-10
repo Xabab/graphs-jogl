@@ -11,7 +11,7 @@ import logic.graphs.Graphs;
 
 
 public class Paths {
-    static GL2 gl = null;
+    private static GL2 gl = null;
 
     public static void init(GLAutoDrawable d){
         gl = d.getGL().getGL2();

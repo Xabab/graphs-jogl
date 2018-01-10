@@ -10,9 +10,9 @@ package logic.graphs.elements;
  * @author xabab
  */
 public class Path extends Decor{
-    Node _from = null;
-    Node _to = null;
-    int weight;
+    private Node _from;
+    private Node _to;
+    private int weight;
 
     public Path(Node from, Node to){
         _from = from;

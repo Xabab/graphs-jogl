@@ -36,13 +36,13 @@ public class MouseInput implements MouseListener {
                     Graphs.addNode(e.getX(), e.getY());
                     break;
                 case NODE_DELETE:
-                    Graphs.deleteNode(Graphs.nodeInRadiusN(e.getX(), e.getY(), Graphs.DIST_BETW_NODES));
+                    Graphs.deleteNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case PATH_ADD:
-                    Graphs.addPathFirstNode(Graphs.nodeInRadiusN(e.getX(), e.getY(), Graphs.DIST_BETW_NODES));
+                    Graphs.addPathFirstNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case PATH_ADD_SEC:
-                    Graphs.addPathSecondNode(Graphs.nodeInRadiusN(e.getX(), e.getY(), Graphs.DIST_BETW_NODES));
+                    Graphs.addPathSecondNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
                     break;
         }
 }

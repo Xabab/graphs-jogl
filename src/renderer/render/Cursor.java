@@ -18,7 +18,7 @@ import logic.graphs.Graphs;
  */
 public class Cursor {
 
-    static GL2 gl = null;                                                       //and word of the day is "static"
+    private static GL2 gl = null;                                                       //and word of the day is "static"
 
     public static void init(GLAutoDrawable d){
         gl = d.getGL().getGL2();

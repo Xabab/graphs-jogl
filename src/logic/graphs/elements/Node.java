@@ -15,8 +15,8 @@ public class Node extends Decor{
 
     public static final int SIZE = 15;
 
-    int _x;
-    int _y;
+    private int _x;
+    private int _y;
 
     public Node(int x, int y){
         super.col= ORANGE;

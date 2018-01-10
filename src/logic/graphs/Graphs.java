@@ -6,7 +6,6 @@
 package logic.graphs;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import logic.Mode;
 import logic.graphs.elements.Node;
@@ -15,11 +14,11 @@ import logic.graphs.elements.Path;
 public class Graphs {
 
 
-    static final List<Node> nodes = new ArrayList<Node>();
-    static final List<Path> paths = new ArrayList<Path>();
+    private static final List<Node> nodes = new ArrayList<>();
+    private static final List<Path> paths = new ArrayList<>();
 
-    static Node path_add_first_point_temp;
-    static Path weight_add_temp = null;
+    private static Node path_add_first_point_temp;
+    private static Path weight_add_temp = null;
 
     static public final int DIST_BETW_NODES = Node.SIZE * 7;
 
@@ -36,7 +35,7 @@ public class Graphs {
 //        return null;
 //    }
 
-    public static Node nodeInRadiusN(int x, int y, int r){
+    public static Node nodeInRadiusN(int x, int y){
         for (Node node : nodes) {
             if(((node.getX() - x)*(node.getX() - x) +
                     (node.getY() - y)*(node.getY() - y))
@@ -55,7 +54,7 @@ public class Graphs {
         Mode.setMode(Mode.MODE.NODE_ADD);
     }
 
-    public static void addPath(Node from, Node to){
+    private static void addPath(Node from, Node to){
         paths.add(new Path(from, to));
     }
 
@@ -82,23 +81,13 @@ public class Graphs {
     }
 
     private static void deletePathsWithNode(Node node){
-        for (Iterator<Path> pitr = paths.iterator(); pitr.hasNext(); ) {
-            Path path = pitr.next();
-            if(path.getFrom()== node || path.getTo() == node){
-                pitr.remove();
-            }
-        }
+        paths.removeIf(path -> path.getFrom() == node || path.getTo() == node);
     }
 
 
     public static void deleteNode(Node node) {
         deletePathsWithNode(node);
-        for (Iterator<Node> nitr = nodes.iterator(); nitr.hasNext(); ) {
-            Node temp = nitr.next();
-            if(node == temp){
-                nitr.remove();
-            }
-        }
+        nodes.removeIf(temp -> node == temp);
     }
 
     public static void addPathFirstNode(Node node){

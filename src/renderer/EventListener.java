@@ -3,7 +3,6 @@ package renderer;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
-import com.jogamp.opengl.util.awt.TextRenderer;
 import engine.GameLoop;
 import renderer.render.Cursor;
 import renderer.render.Nodes;
@@ -13,7 +12,6 @@ import renderer.render.gui.Gui;
 
 public class EventListener implements GLEventListener {                         //window event listener
 
-    TextRenderer renderer;
     @Override
     public void init(GLAutoDrawable drawable) {
         GL2 gl = drawable.getGL().getGL2();                                     //object with all gl f()

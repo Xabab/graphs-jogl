@@ -3,14 +3,12 @@ package renderer;
 import com.jogamp.newt.opengl.GLWindow;
 import com.jogamp.opengl.GLCapabilities;
 import com.jogamp.opengl.GLProfile;
-import com.jogamp.opengl.util.FPSAnimator;
 import input.KeyInput;
 import input.MouseInput;
 
 public class Window {
 
     private static GLWindow window = null;
-    private static FPSAnimator animator;
 
     public static final int X = 800;
     public static final int Y = 600;

@@ -19,9 +19,9 @@ import renderer.render.Shapes;
  */
 public class KeyInput implements KeyListener{
 
-    static boolean _pressed;
-    static String weight_temp = "";
-    static final String ALOWED_TEXT_INPUT = "-1234567890";
+    private static boolean _pressed;
+    private static String weight_temp = "";
+    private static final String ALOWED_TEXT_INPUT = "-1234567890";
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -54,17 +54,16 @@ public class KeyInput implements KeyListener{
     }
 
 
-    public static void weightKeyPress(char keyChar) {
+    private static void weightKeyPress(char keyChar) {
         if(ALOWED_TEXT_INPUT.contains(Character.toString(keyChar))){
             if(!weight_temp.isEmpty() && keyChar == '-') return;
-            if(weight_temp == null) weight_temp = Character.toString(keyChar);
-            else weight_temp = weight_temp.concat(Character.toString(keyChar));
+            weight_temp = weight_temp.concat(Character.toString(keyChar));
         }
     }
 
-    public static void weightEnter() {
+    private static void weightEnter() {
         System.out.println(Integer.parseInt(weight_temp));
-        if(!weight_temp.isEmpty() || !weight_temp.equals("-")){
+        if(!weight_temp.isEmpty() && !weight_temp.equals("-")){
             Graphs.weightEnter(weight_temp);
             weight_temp = "";
         }

@@ -27,9 +27,9 @@ public class Text {
     }
 
     public static void textWeight(int x, int y, String text, float cR, float cG, float cB){
-        button.setColor(cR, cG, cB, 1f);
-        button.beginRendering(Window.X, Window.Y);
-        button.draw(text, x - 5, Window.Y - y - 5);
-        button.endRendering();
+        weihgt.setColor(cR, cG, cB, 1f);
+        weihgt.beginRendering(Window.X, Window.Y);
+        weihgt.draw(text, x - 5, Window.Y - y - 5);
+        weihgt.endRendering();
     }
 }
