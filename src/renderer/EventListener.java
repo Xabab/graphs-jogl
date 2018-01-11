@@ -10,7 +10,7 @@ import renderer.render.Paths;
 import renderer.render.Shapes;
 import renderer.render.gui.Gui;
 
-public class EventListener implements GLEventListener {                         //window event listener
+class EventListener implements GLEventListener {                         //window event listener
 
     @Override
     public void init(GLAutoDrawable drawable) {

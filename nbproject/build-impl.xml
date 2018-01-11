@@ -18,7 +18,8 @@ is divided into following sections:
   - applet
   - cleanup
 
-        -->
+       , AntMissingPropertiesFileInspection -->
+<!--suppress AntResolveInspection, AntMissingPropertiesFileInspection -->
 <project xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" basedir=".." default="default" name="graphs-javaopengl-impl">
     <fail message="Please build using Ant 1.8.0 or higher.">
         <condition>

@@ -8,6 +8,7 @@ package renderer.render;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import logic.graphs.Graphs;
+import logic.graphs.elements.Decor;
 
 
 public class Paths {
@@ -27,14 +28,24 @@ public class Paths {
         if(gl == null) return;
 
         for(int i = 0; i < Graphs.getPathArrSize(); i++){
-            gl.glColor3f(0f, .5f, 0f);
+            if(Graphs.getPath(i).getColor() == Decor.COLOR.GREEN) gl.glColor3f(0f, .5f, 0f);
+            else gl.glColor3f(1f, 0f, 0f);
+
             Shapes.drawLine(
                     Graphs.getPath(i).getFrom().getX(),
                     Graphs.getPath(i).getFrom().getY(),
                     Graphs.getPath(i).getTo().getX(),
                     Graphs.getPath(i).getTo().getY(),
-                    3f //not working ffs
+                    3f
             );
+            /*
+            double sin = abs((Graphs.getPath(i).getFrom().getX() - Graphs.getPath(i).getTo().getX()) /
+                    (Graphs.getPath(i).getFrom().getY() - Graphs.getPath(i).getTo().getY()));
+            double cos = abs((Graphs.getPath(i).getFrom().getY() - Graphs.getPath(i).getTo().getY()) /
+                    (Graphs.getPath(i).getFrom().getX() - Graphs.getPath(i).getTo().getX()));
+            Shapes.drawLine(
+
+            )*/
         }
 
     }

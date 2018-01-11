@@ -18,6 +18,7 @@ public class Window {
         GLProfile profile = GLProfile.get(GLProfile.GL2);                       //choosing OpenGL 2 profile
         GLCapabilities caps = new GLCapabilities(profile);                      //getting GL2 profile capabilities
 
+        //noinspection SpellCheckingInspection
         window = GLWindow.create(caps);                                         //creating an true'Ъ opengl window
         window.setSize(X, Y);
         window.setTitle("Freaking window");

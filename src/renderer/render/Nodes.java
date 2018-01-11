@@ -15,7 +15,7 @@ import logic.graphs.elements.Node;
  * @author xabab
  */
 public class Nodes {
-    static GL2 gl = null;
+    private static GL2 gl = null;
 
     public static void init(GLAutoDrawable d){
         gl = d.getGL().getGL2();
@@ -23,7 +23,7 @@ public class Nodes {
 
     public static void drawDecor(){
         if(gl == null) return;
-
+        //TODO
 
     }
 
@@ -45,10 +45,25 @@ public class Nodes {
                     gl.glColor3f(0f, 1f, 0f);
                     break;
             }
+            if(Graphs.getStart() == Graphs.getNode(i)) gl.glColor3f(0f, 1f, 0f);
+            if(Graphs.getFinish() == Graphs.getNode(i)) gl.glColor3f(1f, 0f, 0f);
+            if(Graphs.getNode(i) == null) continue;                                                                     //hack
             Shapes.drawCircle(Graphs.getNode(i).getX(), Graphs.getNode(i).getY(), Node.SIZE, 16);
         }
 
 
-
+    }
+    public static void drawCosts() {
+        if (gl == null) return;
+        Node n;
+        for (int i = 0; i < Graphs.getNodeArrSize(); i++) {
+            n = Graphs.getNode(i);
+            if(n.getCost() == 1000000) {
+                Text.textWeight(n.getX(), n.getY(), "inf", 0, 0, 0);
+            }
+            else {
+                Text.textWeight(n.getX(), n.getY(), Integer.toString(n.getCost()), 0, 0, 0);
+            }
+        }
     }
 }

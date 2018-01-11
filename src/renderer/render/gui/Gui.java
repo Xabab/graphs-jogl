@@ -8,12 +8,11 @@ package renderer.render.gui;
 import logic.Mode;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
+import logic.graphs.Graphs;
 import renderer.render.Shapes;
 import renderer.render.Text;
 
 public class Gui {
-
-    private static Shapes sh;
     private static GL2 gl = null;
     private Gui(){}
 
@@ -21,7 +20,7 @@ public class Gui {
         gl = d.getGL().getGL2();
     }
 
-    static final Button []menu = {
+    private static final Button []menu = {
             new Button(10, 10, 60, 20, .7f, .7f, 0f, "Add Node") {
                 public void onClick() { Mode.setMode(Mode.MODE.NODE_ADD); }
             },
@@ -38,7 +37,7 @@ public class Gui {
                 public void onClick() { Mode.setMode(Mode.MODE.SEL_END); }
             },
             new Button(10, 180, 60, 20, 0f, 0f, 0f, "Start") {
-                public void onClick() { /*Mode.setMode(Mode.MODE.);*/ }
+                public void onClick() { Graphs.findPath(); }
             }
     };
 

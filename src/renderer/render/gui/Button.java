@@ -12,27 +12,17 @@ import input.MouseInfo;
  * @author xabab
  */
 public abstract class Button{
-    float _cR = 1;
-    float _cG = 1;
-    float _cB = 1;
+    private float _cR;
+    private float _cG;
+    private float _cB;
 
-    int _sizeX = 1;
-    int _sizeY = 1;
+    private int _sizeX;
+    private int _sizeY;
 
-    int _posX = 0;
-    int _posY = 0;
+    private int _posX;
+    private int _posY;
 
-    String _title = null;
-
-    public Button(int posX, int posY, int sizeX, int sizeY, float cR ,float cG, float cB){
-    _cR = cR;
-    _cG = cG;
-    _cB = cB;
-    _sizeX = sizeX;
-    _sizeY = sizeY;
-    _posX = posX;
-    _posY = posY;
-    }
+    private String _title;
 
     public Button(int posX, int posY, int sizeX, int sizeY, float cR ,float cG, float cB, String title){
     _cR = cR;
@@ -56,7 +46,7 @@ public abstract class Button{
 
 
 
-    public abstract void onClick();         //TODO better buttons for using lambda exprecions
+    public abstract void onClick();
 
     public float get_cR(){
         return _cR;

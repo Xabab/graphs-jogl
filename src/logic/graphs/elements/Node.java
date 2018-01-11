@@ -13,13 +13,17 @@ import static logic.graphs.elements.Decor.COLOR.ORANGE;
  */
 public class Node extends Decor{
 
+
+
     public static final int SIZE = 15;
 
-    private int _x;
-    private int _y;
+    private Node parent;
+    private final int _x;
+    private final int _y;
+    private int cost = 1000000; //inf
 
     public Node(int x, int y){
-        super.col= ORANGE;
+        super.col = ORANGE;
         _x = x;
         _y = y;
     }
@@ -32,4 +36,18 @@ public class Node extends Decor{
         return _y;
     }
 
+    public int getCost() {
+        return cost;
+    }
+
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
+    public Node getParent(){
+        return parent;
+    }
+    public void setParent(Node p){
+        parent = p;
+    }
 }

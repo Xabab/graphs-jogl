@@ -34,7 +34,7 @@ public class GameLoop {
                 Window.render();
             }
         });
-        thread.setName("Gameloop");
+        thread.setName("GameLoop");
         thread.start();
     }
 
@@ -70,7 +70,19 @@ public class GameLoop {
         //draw paths cost
         Paths.drawWeights();
 
-        //draw path cost on nodes if algoritm going
+        //draw path cost on nodes if algorithm going
+        if(Mode.getMode() == Mode.MODE.DONE){
+            Nodes.drawCosts();
+        }
+
+
+        /////////////////////////
+        if(Mode.getMode() == Mode.MODE.DONE) {
+            if (Graphs.getResult()) Shapes.drawBox(0, 400, 15, 15);
+            else Shapes.drawCircle(0, 400, 15, 15);
+        }
+        /////////////////////////
+
 
         //draw cursor
         Cursor.draw();

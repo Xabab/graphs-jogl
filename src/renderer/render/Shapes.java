@@ -38,7 +38,7 @@ public class Shapes {
     public static void drawCircle(int center_x, int center_y, int radius, int count_of_polygons, float cR, float cG, float cB){
         if(gl == null) return;
 
-        gl.glColor3f(cR, cR, cB);
+        gl.glColor3f(cR, cG, cB);
         gl.glLineWidth(1);
         gl.glBegin(GL2.GL_POLYGON);
         for (int i = 0; i < count_of_polygons; i++) {

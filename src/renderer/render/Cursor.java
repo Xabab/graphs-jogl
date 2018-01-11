@@ -25,7 +25,7 @@ public class Cursor {
     }
 
     public static void draw(){
-                if(gl == null || MouseInfo.getX() < 90) return;
+                if((gl == null) || (MouseInfo.getX() < 90)) return;   //TODO remove magic constant
         switch(Mode.getMode()){ //NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA, SEL_END, ALG
 
             case NODE_ADD:
@@ -36,11 +36,7 @@ public class Cursor {
                 break;
 
             case NODE_DELETE:
-                gl.glColor3f(1f, 0f, 0f);
-                Shapes.drawLine(MouseInfo.getX() - 15, MouseInfo.getY() - 5,
-                               MouseInfo.getX() -5,    MouseInfo.getY() - 15, 5f);
-                Shapes.drawLine(MouseInfo.getX() - 15, MouseInfo.getY() - 15,
-                               MouseInfo.getX() - 5,   MouseInfo.getY() - 5, 5f);
+                Text.textWeight(MouseInfo.getX() - 12, MouseInfo.getY() - 10, "X", 1, 0, 0);
                 break;
 
             case PATH_ADD:
@@ -54,13 +50,15 @@ public class Cursor {
                                MouseInfo.getX() -5,    MouseInfo.getY() - 15, 5f);
                 break;
             case WEIGHT_ADD:
-                gl.glColor3f(1f, 0, 0);
-                Shapes.drawLine(MouseInfo.getX() - 15, MouseInfo.getY() - 5,
-                               MouseInfo.getX() -5,    MouseInfo.getY() - 15, 5f);
+                Text.textWeight(MouseInfo.getX() - 12, MouseInfo.getY() - 10, "W", 1, 1, 1);
                 break;
             case SEL_STA:
+                gl.glColor3f(0, 1, 0);
+                Shapes.drawCircle(MouseInfo.getX() - 10, MouseInfo.getY() - 10, 5, 8);
                 break;
             case SEL_END:
+                gl.glColor3f(1, 0, 0);
+                Shapes.drawCircle(MouseInfo.getX() - 10, MouseInfo.getY() - 10, 5, 8);
                 break;
             case PROC:
                 break;

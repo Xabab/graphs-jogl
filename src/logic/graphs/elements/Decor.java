@@ -6,11 +6,11 @@ import static logic.graphs.elements.Decor.DEC_TYPE.NONE;                        
 
 
 public class Decor {
-    public enum DEC_TYPE {NONE, GLOW};
-    public enum COLOR {WHITE, RED, ORANGE, YELLOW, GREEN};
+    public enum DEC_TYPE {NONE, GLOW}
+    public enum COLOR {WHITE, RED, ORANGE, YELLOW, GREEN}
 
-    DEC_TYPE dec = NONE;
-    COLOR col = WHITE;
+    protected DEC_TYPE dec = NONE;
+    protected COLOR col = WHITE;
 
     public DEC_TYPE getDecor(){
         return dec;
@@ -28,11 +28,11 @@ public class Decor {
     }
 
     public static void drawNodeDecor(Node n){
-
+        //TODO
     }
 
     public static void drawPathDecor(Path p){
-
+        //TODO
     }
 
 }

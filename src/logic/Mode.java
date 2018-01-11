@@ -8,7 +8,7 @@ package logic;
 
 public class Mode {
     public enum MODE {NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA,
-        SEL_END, PROC, WEIGHT_ADD};
+        SEL_END, PROC, WEIGHT_ADD, DONE}
 
     private static MODE mode = MODE.NODE_ADD;
 

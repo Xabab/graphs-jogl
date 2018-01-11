@@ -14,8 +14,8 @@ import renderer.Window;
  * @author xabab
  */
 public class Text {
-    static TextRenderer button = new TextRenderer(new Font("SansSerif", Font.PLAIN, 10));
-    static TextRenderer weihgt = new TextRenderer(new Font("SansSerif", Font.CENTER_BASELINE, 15));
+    private static final TextRenderer button = new TextRenderer(new Font("SansSerif", Font.PLAIN, 10));
+    private static final TextRenderer weight = new TextRenderer(new Font("SansSerif", Font.BOLD, 15));
 
 
 
@@ -27,9 +27,9 @@ public class Text {
     }
 
     public static void textWeight(int x, int y, String text, float cR, float cG, float cB){
-        weihgt.setColor(cR, cG, cB, 1f);
-        weihgt.beginRendering(Window.X, Window.Y);
-        weihgt.draw(text, x - 5, Window.Y - y - 5);
-        weihgt.endRendering();
+        weight.setColor(cR, cG, cB, 1f);
+        weight.beginRendering(Window.X, Window.Y);
+        weight.draw(text, x - 5, Window.Y - y - 5);
+        weight.endRendering();
     }
 }

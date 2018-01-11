@@ -21,14 +21,14 @@ public class KeyInput implements KeyListener{
 
     private static boolean _pressed;
     private static String weight_temp = "";
-    private static final String ALOWED_TEXT_INPUT = "-1234567890";
+    private static final String ALLOWED_TEXT_INPUT = "-1234567890";
 
     @Override
     public void keyPressed(KeyEvent e) {
         Shapes.drawCircle(100, 100, 5, 8, 1, 1, 1);
         System.out.println(e.getKeyCode());
         System.out.println(e.getKeyChar());
-        if(Mode.getMode() == Mode.MODE.WEIGHT_ADD && !_pressed){
+        if((Mode.getMode() == Mode.MODE.WEIGHT_ADD) && !_pressed){
             switch (e.getKeyCode()) {
                 case 13: //if ENTER
                     weightEnter();
@@ -55,8 +55,8 @@ public class KeyInput implements KeyListener{
 
 
     private static void weightKeyPress(char keyChar) {
-        if(ALOWED_TEXT_INPUT.contains(Character.toString(keyChar))){
-            if(!weight_temp.isEmpty() && keyChar == '-') return;
+        if(ALLOWED_TEXT_INPUT.contains(Character.toString(keyChar))){
+            if(!weight_temp.isEmpty() && (keyChar == '-')) return;
             weight_temp = weight_temp.concat(Character.toString(keyChar));
         }
     }

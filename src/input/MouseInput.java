@@ -44,6 +44,12 @@ public class MouseInput implements MouseListener {
                 case PATH_ADD_SEC:
                     Graphs.addPathSecondNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
                     break;
+                case SEL_STA:
+                    Graphs.setStart(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    break;
+                case SEL_END:
+                    Graphs.setFinish(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    break;
         }
 }
     }

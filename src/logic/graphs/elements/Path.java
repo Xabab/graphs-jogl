@@ -10,13 +10,14 @@ package logic.graphs.elements;
  * @author xabab
  */
 public class Path extends Decor{
-    private Node _from;
-    private Node _to;
+    private final Node _from;
+    private final Node _to;
     private int weight;
 
     public Path(Node from, Node to){
         _from = from;
         _to = to;
+        col = COLOR.GREEN;
     }
 
     public void setWeight(int w){

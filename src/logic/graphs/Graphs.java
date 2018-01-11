@@ -8,6 +8,7 @@ package logic.graphs;
 import java.util.ArrayList;
 import java.util.List;
 import logic.Mode;
+import logic.graphs.elements.Decor;
 import logic.graphs.elements.Node;
 import logic.graphs.elements.Path;
 
@@ -21,6 +22,10 @@ public class Graphs {
     private static Path weight_add_temp = null;
 
     static public final int DIST_BETW_NODES = Node.SIZE * 7;
+
+    private static boolean success = false;
+    private static Node start;
+    private static Node finish;
 
 
     public static boolean nodeInRadiusB(int x, int y, int r){
@@ -81,7 +86,7 @@ public class Graphs {
     }
 
     private static void deletePathsWithNode(Node node){
-        paths.removeIf(path -> path.getFrom() == node || path.getTo() == node);
+        paths.removeIf(path -> (path.getFrom() == node) || (path.getTo() == node));
     }
 
 
@@ -99,9 +104,9 @@ public class Graphs {
     public static void addPathSecondNode(Node node){
 
         for(Path p: paths){
-            if((p.getFrom() == node || p.getTo() == node) &&
-                    (p.getFrom() == path_add_first_point_temp || p.getTo() == path_add_first_point_temp)){
+            if(((p.getTo() == node) && (p.getFrom() == path_add_first_point_temp)) || (node == path_add_first_point_temp) || (node == null)){
                 Mode.setMode(Mode.MODE.PATH_ADD);
+
                 path_add_first_point_temp = null;
                 return;
             }
@@ -110,6 +115,7 @@ public class Graphs {
         addPath(path_add_first_point_temp, node);
         weight_add_temp = paths.get(paths.size() - 1);
         Mode.setMode(Mode.MODE.WEIGHT_ADD);
+        path_add_first_point_temp = null;
     }
 
     public static void weightEnter(String weight) {
@@ -122,4 +128,76 @@ public class Graphs {
         return weight_add_temp;
     }
 
+    public static void findPath(){
+        System.out.println("Processing");
+        if((start != null) && (finish != null)){
+            Mode.setMode(Mode.MODE.PROC);
+            for (Node n : nodes) {
+                n.setCost(1000000);
+            }
+            success = true;
+            start.setCost(0);
+
+            boolean relaxed;
+            for (int iteration = 0; iteration < nodes.size(); iteration++) {
+                for (Path p : paths) {
+                    relaxed = relax(p);
+                    if(relaxed)p.getTo().setParent(p.getFrom());
+                    if ((iteration == (nodes.size() - 1)) && relaxed) success = false;
+                }
+            }
+            if (finish.getParent() == null) success = false;
+            Mode.setMode(Mode.MODE.DONE);
+            System.out.println("Done");
+            if (!success){
+                for (Path p: paths){
+                    p.setColor(Decor.COLOR.GREEN);
+                }
+            }
+            else{
+                Node tmp = finish;
+                while(tmp.getParent() != null){
+                    findPath(tmp.getParent(), tmp).setColor(Decor.COLOR.RED);
+                    tmp = tmp.getParent();
+                }
+            }
+        }
+        else Mode.setMode(Mode.MODE.PATH_ADD);
+    }
+
+    private static Path findPath(Node from, Node to){
+        for(Path p: paths){
+            if((p.getFrom() == from) && (p.getTo() == to)) return p;
+        }
+        return null;
+    }
+
+    private static boolean relax(Path p) {
+        if ((p.getFrom().getCost() + p.getWeight()) < p.getTo().getCost()) {
+            p.getTo().setCost(p.getFrom().getCost() + p.getWeight());
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean getResult(){
+        return success;
+    }
+
+
+
+    public static void setStart(Node n){
+        start = n;
+    }
+    public static void setFinish(Node n){
+        finish = n;
+    }
+
+
+    public static Node getStart(){
+        return start;
+    }
+    public static Node getFinish(){
+        return finish;
+    }
 }
