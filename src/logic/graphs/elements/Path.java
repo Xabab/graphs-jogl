@@ -17,7 +17,7 @@ public class Path extends Decor{
     public Path(Node from, Node to){
         _from = from;
         _to = to;
-        col = COLOR.GREEN;
+        super.setColor(COLOR.GREEN);
     }
 
     public void setWeight(int w){

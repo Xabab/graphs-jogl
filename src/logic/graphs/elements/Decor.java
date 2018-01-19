@@ -9,8 +9,10 @@ public class Decor {
     public enum DEC_TYPE {NONE, GLOW}
     public enum COLOR {WHITE, RED, ORANGE, YELLOW, GREEN}
 
-    protected DEC_TYPE dec = NONE;
-    protected COLOR col = WHITE;
+    private DEC_TYPE dec = NONE;
+    private COLOR col = WHITE;
+
+    //TODO constructor
 
     public DEC_TYPE getDecor(){
         return dec;
@@ -26,13 +28,4 @@ public class Decor {
     public void setColor(COLOR color){
         col = color;
     }
-
-    public static void drawNodeDecor(Node n){
-        //TODO
-    }
-
-    public static void drawPathDecor(Path p){
-        //TODO
-    }
-
 }

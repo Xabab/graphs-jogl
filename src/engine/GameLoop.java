@@ -28,7 +28,6 @@ public class GameLoop {
 
         Thread thread = new Thread(() -> {
             running = true;
-//                GLContext.makeCurrent();
 
             while (running) {
                 Window.render();
@@ -57,13 +56,13 @@ public class GameLoop {
             Shapes.drawCircle(
                     (p.getFrom().getX() + p.getTo().getX()) / 2,
                     (p.getFrom().getY() + p.getTo().getY()) / 2,
-                    30, 16, 0.4f, 0.4f, 0.4f);
-            if (!KeyInput.getWeightTemp().isEmpty()) {
-                Text.textWeight(
-                        (p.getFrom().getX() + p.getTo().getX()) / 2,
-                        (p.getFrom().getY() + p.getTo().getY()) / 2,
-                        KeyInput.getWeightTemp(), 1f, 1f, 1f);
-            }
+                    15, 16, 0.4f, 0.4f, 0.4f);
+
+            Text.textWeight(
+                    (p.getFrom().getX() + p.getTo().getX()) / 2,
+                    (p.getFrom().getY() + p.getTo().getY()) / 2,
+                    KeyInput.getWeightTemp() + "I", 1f, 1f, 1f);
+
         }
 
 
@@ -76,7 +75,7 @@ public class GameLoop {
         }
 
 
-        /////////////////////////
+        ///////////////////////// DEBUG
         if(Mode.getMode() == Mode.MODE.DONE) {
             if (Graphs.getResult()) Shapes.drawBox(0, 400, 15, 15);
             else Shapes.drawCircle(0, 400, 15, 15);

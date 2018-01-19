@@ -23,7 +23,7 @@ public class Node extends Decor{
     private int cost = 1000000; //inf
 
     public Node(int x, int y){
-        super.col = ORANGE;
+        super.setColor(ORANGE);
         _x = x;
         _y = y;
     }

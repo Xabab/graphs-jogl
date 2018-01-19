@@ -14,6 +14,7 @@ import logic.graphs.elements.Path;
 
 public class Graphs {
 
+    //TODO refactor class, it's too complicated
 
     private static final List<Node> nodes = new ArrayList<>();
     private static final List<Path> paths = new ArrayList<>();
@@ -28,17 +29,12 @@ public class Graphs {
     private static Node finish;
 
 
-    public static boolean nodeInRadiusB(int x, int y, int r){
+    public static boolean nodeInRadiusB(int x, int y, int r) {
         return nodes.stream().anyMatch((node) ->                                //suggested by IDE
-              (((node.getX() - x)*(node.getX() - x) +                           //x^2 + y^2 < r^2
-                (node.getY() - y)*(node.getY() - y))
-                < r*r));
+                (((node.getX() - x) * (node.getX() - x) +                           //x^2 + y^2 < r^2
+                        (node.getY() - y) * (node.getY() - y))
+                        < r * r));
     }
-
-//    public static Path pathInArea(int x, int y, int area){
-//        //TODO
-//        return null;
-//    }
 
     public static Node nodeInRadiusN(int x, int y){
         for (Node node : nodes) {
@@ -187,10 +183,12 @@ public class Graphs {
 
 
     public static void setStart(Node n){
-        start = n;
+        if(start == n) start = null;
+        else start = n;
     }
     public static void setFinish(Node n){
-        finish = n;
+        if(finish == n) finish = null;
+        else finish = n;
     }
 
 
