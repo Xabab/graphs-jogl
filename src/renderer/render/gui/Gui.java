@@ -30,15 +30,19 @@ public class Gui {
             new Button(10, 70, 60, 20, 0f, 0.2f, 0f, "Add Path") {
                 public void onClick() { Mode.setMode(Mode.MODE.PATH_ADD); }
             },
-            new Button(10, 110, 60, 20, 0f, .7f, 0f, "Sel Srt") {
+            new Button(10, 110, 60, 20, 0f, .7f, 0f, "Sel Start") {
                 public void onClick() { Mode.setMode(Mode.MODE.SEL_STA); }
             },
             new Button(10, 140, 60, 20, .9f, 0f, 0f, "Sel End") {
                 public void onClick() { Mode.setMode(Mode.MODE.SEL_END); }
             },
             new Button(10, 180, 60, 20, 0f, 0f, 0f, "Start") {
-                public void onClick() { Graphs.findPath(); }
+                public void onClick() { if(Mode.getMode() != Mode.MODE.NEGATIVE_SEARCH || Mode.getMode() != Mode.MODE.PROC) Graphs.findPath(); }
+            },
+            new Button(10, 210, 60, 20, 0f, 0f, 0f, ">>") {
+                public void onClick() { Graphs.fastForward(); }
             }
+
     };
 
     public static void draw(){

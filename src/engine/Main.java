@@ -8,9 +8,9 @@ import renderer.Window;
  */
 
 /*
-Author's note:
+Note:
     ABANDON HOPE ALL YE WHO ENTER HERE
-    Happy refactoring -and/or- *(strikethrough)* AND debugging
+    Happy refactoring -and/or- *strikethrough* AND debugging
  */
 
 public class Main {

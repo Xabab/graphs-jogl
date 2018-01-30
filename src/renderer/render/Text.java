@@ -24,6 +24,7 @@ public class Text {
         button.beginRendering(Window.X, Window.Y);
         button.draw(text, x, Window.Y - y);
         button.endRendering();
+        button.flush();
     }
 
     public static void textWeight(int x, int y, String text, float cR, float cG, float cB){
@@ -31,5 +32,6 @@ public class Text {
         weight.beginRendering(Window.X, Window.Y);
         weight.draw(text, x - 5, Window.Y - y - 5);
         weight.endRendering();
+        weight.flush();
     }
 }

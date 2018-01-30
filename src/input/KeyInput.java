@@ -62,9 +62,9 @@ public class KeyInput implements KeyListener{
     }
 
     private static void weightEnter() {
-        System.out.println(Integer.parseInt(weight_temp));
         if(!weight_temp.isEmpty() && !weight_temp.equals("-")){
-            Graphs.weightEnter(weight_temp);
+            System.out.println(Integer.parseInt(weight_temp));
+            Graphs.Field.weightEnter(weight_temp);
             weight_temp = "";
         }
     }

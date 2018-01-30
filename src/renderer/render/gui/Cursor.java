@@ -3,14 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package renderer.render;
+package renderer.render.gui;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import input.MouseInfo;
 import logic.Mode;
-import static logic.Mode.MODE.*;
 import logic.graphs.Graphs;
+import logic.graphs.elements.Node;
+import renderer.render.Nodes;
+import renderer.render.Shapes;
+import renderer.render.Text;
 
 /**
  *
@@ -18,20 +21,20 @@ import logic.graphs.Graphs;
  */
 public class Cursor {
 
-    private static GL2 gl = null;                                                       //and word of the day is "static"
+    private static GL2 gl = null;                                                                                       //and word of the day is "static"
 
     public static void init(GLAutoDrawable d){
         gl = d.getGL().getGL2();
     }
 
     public static void draw(){
-                if((gl == null) || (MouseInfo.getX() < 90)) return;   //TODO remove magic constant
+                if((gl == null) || (MouseInfo.getX() < 90)) return;                                                     //TODO remove magic constant
         switch(Mode.getMode()){ //NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA, SEL_END, ALG
 
             case NODE_ADD:
-                if(Graphs.nodeInRadiusB(MouseInfo.getX(), MouseInfo.getY(), Graphs.DIST_BETW_NODES))
-                        gl.glColor3f(0.7f, 0.7f, 0.7f);                         //gray
-                else gl.glColor3f(1f, 1f, 0.4f);                                //yellow-ish
+                if(Graphs.Field.nodeInRadiusB(MouseInfo.getX(), MouseInfo.getY(), Graphs.Field.DIST_BETW_NODES))
+                        gl.glColor3f(0.7f, 0.7f, 0.7f);                                                      //gray
+                else Nodes.applyColor(Node.defaultColor);
                 Shapes.drawCircle(MouseInfo.getX() - 10, MouseInfo.getY() - 10, 5, 8);
                 break;
 
@@ -61,6 +64,7 @@ public class Cursor {
                 Shapes.drawCircle(MouseInfo.getX() - 10, MouseInfo.getY() - 10, 5, 8);
                 break;
             case PROC:
+
                 break;
         }
     }

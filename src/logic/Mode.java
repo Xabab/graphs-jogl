@@ -6,13 +6,19 @@
 package logic;
 
 
+import logic.graphs.Graphs;
+
+import static logic.Mode.MODE.*;
+
 public class Mode {
     public enum MODE {NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA,
-        SEL_END, PROC, WEIGHT_ADD, DONE}
+        SEL_END, PROC, WEIGHT_ADD, DONE, FAIL, NEGATIVE_SEARCH, NEGATIVE}
 
     private static MODE mode = MODE.NODE_ADD;
 
     public static void setMode(MODE m){
+        if(mode == DONE || mode == FAIL ||  mode == NEGATIVE) Graphs.resetDecorAndColor();
+
         mode = m;
     }
                                                                                 //TODO locks

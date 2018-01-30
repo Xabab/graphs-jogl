@@ -26,13 +26,14 @@ public class Shapes {
     public static void drawCircle(int center_x, int center_y, int radius, int count_of_polygons){
         if(gl == null) return;
 
-        gl.glBegin(GL2.GL_POLYGON);
         gl.glLineWidth(1);
+        gl.glBegin(GL2.GL_POLYGON);
         for (int i = 0; i < count_of_polygons; i++) {
             gl.glVertex2d((center_x + sin(((2 * PI) / count_of_polygons) * i) * radius),
                     (center_y + cos(((2 * PI) / count_of_polygons) * i) * radius));
         }
         gl.glEnd();
+        gl.glFlush();
     }
 
     public static void drawCircle(int center_x, int center_y, int radius, int count_of_polygons, float cR, float cG, float cB){
@@ -46,6 +47,7 @@ public class Shapes {
                     (center_y + cos(((2 * PI) / count_of_polygons) * i) * radius));
         }
         gl.glEnd();
+        gl.glFlush();
     }
 
     public static void drawBox(int x, int y, int size_x, int size_y){
@@ -60,11 +62,11 @@ public class Shapes {
             gl.glVertex2i(x + size_x, y);
         }
         gl.glEnd();
+        gl.glFlush();
     }
 
     public static void drawLine(int x1, int y1, int x2, int y2, float width){
         if(gl == null) return;
-
 
         gl.glLineWidth(width);
 
@@ -74,8 +76,6 @@ public class Shapes {
             gl.glVertex2i(x2, y2);
         }
         gl.glEnd();
+        gl.glFlush();
     }
-
-
-
 }

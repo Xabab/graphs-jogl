@@ -5,25 +5,23 @@
  */
 package logic.graphs.elements;
 
-import static logic.graphs.elements.Decor.COLOR.ORANGE;
-
 /**
  *
  * @author xabab
  */
 public class Node extends Decor{
-
-
-
     public static final int SIZE = 15;
 
     private Node parent;
     private final int _x;
     private final int _y;
-    private int cost = 1000000; //inf
+    public static int INF = 1000000;
+    private int cost = INF;
+
+    static public final Decor.COLOR defaultColor = COLOR.YELLOW;
 
     public Node(int x, int y){
-        super.setColor(ORANGE);
+        super.setColor(defaultColor);
         _x = x;
         _y = y;
     }

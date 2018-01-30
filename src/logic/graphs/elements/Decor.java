@@ -7,10 +7,11 @@ import static logic.graphs.elements.Decor.DEC_TYPE.NONE;                        
 
 public class Decor {
     public enum DEC_TYPE {NONE, GLOW}
-    public enum COLOR {WHITE, RED, ORANGE, YELLOW, GREEN}
+    public enum COLOR {WHITE, RED, ORANGE, YELLOW, GREEN, BLACK}
 
     private DEC_TYPE dec = NONE;
     private COLOR col = WHITE;
+    private COLOR decCol = WHITE;
 
     //TODO constructor
 
@@ -27,5 +28,13 @@ public class Decor {
     }
     public void setColor(COLOR color){
         col = color;
+    }
+
+    public void setDecorColor(COLOR color){
+        decCol = color;
+    }
+
+    public COLOR getDecorColor(){
+        return decCol;
     }
 }

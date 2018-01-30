@@ -33,22 +33,22 @@ public class MouseInput implements MouseListener {
             //  case mode: do things
             switch(Mode.getMode()){ //NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA, SEL_END, ALG
                 case NODE_ADD:
-                    Graphs.addNode(e.getX(), e.getY());
+                    Graphs.Field.addNode(e.getX(), e.getY());
                     break;
                 case NODE_DELETE:
-                    Graphs.deleteNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    Graphs.Field.deleteNode(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case PATH_ADD:
-                    Graphs.addPathFirstNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    Graphs.Field.addPathFirstNode(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case PATH_ADD_SEC:
-                    Graphs.addPathSecondNode(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    Graphs.Field.addPathSecondNode(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case SEL_STA:
-                    Graphs.setStart(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    Graphs.setStart(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case SEL_END:
-                    Graphs.setFinish(Graphs.nodeInRadiusN(e.getX(), e.getY()));
+                    Graphs.setFinish(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
                     break;
         }
 }

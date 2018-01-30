@@ -4,7 +4,7 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import com.jogamp.opengl.GLEventListener;
 import engine.GameLoop;
-import renderer.render.Cursor;
+import renderer.render.gui.Cursor;
 import renderer.render.Nodes;
 import renderer.render.Paths;
 import renderer.render.Shapes;

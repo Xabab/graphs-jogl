@@ -14,10 +14,13 @@ public class Path extends Decor{
     private final Node _to;
     private int weight;
 
+    static public final Decor.COLOR defaultColor = COLOR.ORANGE;
+
+
     public Path(Node from, Node to){
         _from = from;
         _to = to;
-        super.setColor(COLOR.GREEN);
+        super.setColor(defaultColor);
     }
 
     public void setWeight(int w){
