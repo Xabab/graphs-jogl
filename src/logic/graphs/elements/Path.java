@@ -5,11 +5,13 @@
  */
 package logic.graphs.elements;
 
+import renderer.render.Decor;
+
 /**
  *
  * @author xabab
  */
-public class Path extends Decor{
+public class Path extends Decor {
     private final Node _from;
     private final Node _to;
     private int weight;

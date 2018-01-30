@@ -7,9 +7,10 @@ package renderer.render;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-import logic.graphs.Graphs;
-import logic.graphs.elements.Decor;
+import logic.graphs.BellmanFord;
 import logic.graphs.elements.Node;
+
+import static java.lang.Math.*;
 
 
 public class Paths {
@@ -22,36 +23,67 @@ public class Paths {
     public static void drawPaths(){
         if(gl == null) return;
 
-        for(int i = 0; i < Graphs.Field.getPathArrSize(); i++){
-            if(Graphs.Field.getPath(i).getDecor() == Decor.DEC_TYPE.GLOW) {
-                applyDecorColor(Graphs.Field.getPath(i).getDecorColor());
+        int fromX;
+        int fromY;
+        int toX;
+        int toY;
+
+
+        for(int i = 0; i < BellmanFord.Graph.getPathArrSize(); i++){
+
+            fromX = BellmanFord.Graph.getPath(i).getFrom().getX();
+            fromY = BellmanFord.Graph.getPath(i).getFrom().getY();
+            toX = BellmanFord.Graph.getPath(i).getTo().getX();
+            toY = BellmanFord.Graph.getPath(i).getTo().getY();
+
+            if(BellmanFord.Graph.getPath(i).getDecor() == Decor.DEC_TYPE.GLOW) {
+
+
+                applyDecorColor(BellmanFord.Graph.getPath(i).getDecorColor());
                 Shapes.drawLine(
-                        Graphs.Field.getPath(i).getFrom().getX(),
-                        Graphs.Field.getPath(i).getFrom().getY(),
-                        Graphs.Field.getPath(i).getTo().getX(),
-                        Graphs.Field.getPath(i).getTo().getY(),
+                        fromX,
+                        fromY,
+                        toX,
+                        toY,
                         Node.SIZE
                 );
             }
 
-            applyColor(Graphs.Field.getPath(i).getColor());
+            applyColor(BellmanFord.Graph.getPath(i).getColor());
 
             Shapes.drawLine(
-                    Graphs.Field.getPath(i).getFrom().getX(),
-                    Graphs.Field.getPath(i).getFrom().getY(),
-                    Graphs.Field.getPath(i).getTo().getX(),
-                    Graphs.Field.getPath(i).getTo().getY(),
+                    fromX,
+                    fromY,
+                    toX,
+                    toY,
                     3f
             );
 
             /*
-            double sin = abs((Graphs.getPath(i).getFrom().getX() - Graphs.getPath(i).getTo().getX()) /
-                    (Graphs.getPath(i).getFrom().getY() - Graphs.getPath(i).getTo().getY()));
-            double cos = abs((Graphs.getPath(i).getFrom().getY() - Graphs.getPath(i).getTo().getY()) /
-                    (Graphs.getPath(i).getFrom().getX() - Graphs.getPath(i).getTo().getX()));
-            Shapes.drawLine(
 
-            )*/
+            double direction;
+
+            if((toY - fromY) == 0) {
+                if ((toX - fromX) > 0) direction = 0;
+                else direction = PI;
+
+            }
+            else direction = -Math.atan((toX - fromX) / (toY - fromY) ) + PI/2;
+
+
+
+            Shapes.drawTriangle(
+                    (int)(toX - Node.SIZE * cos(direction)),
+                    (int)(toY - Node.SIZE * sin(direction)),
+                    (int)(toX - 3*Node.SIZE * cos(direction + PI/8)),
+                    (int)(toY - 3*Node.SIZE * sin(direction + PI/8)),
+                    (int)(toX - 3*Node.SIZE * cos(direction - PI/8)),
+                    (int)(toY - 3*Node.SIZE * sin(direction - PI/8))
+            );
+
+            */
+
+
         }
 
     }
@@ -101,12 +133,12 @@ public class Paths {
     }
 
     public static void drawWeights() {
-        for(int i = 0; i < Graphs.Field.getPathArrSize(); i++){
-            if(Graphs.Field.getPath(i) == Graphs.Field.getWeightPathTemp()) continue;
+        for(int i = 0; i < BellmanFord.Graph.getPathArrSize(); i++){
+            if(BellmanFord.Graph.getPath(i) == BellmanFord.Graph.getWeightPathTemp()) continue;
             Text.textWeight(
-                    (Graphs.Field.getPath(i).getFrom().getX() + Graphs.Field.getPath(i).getTo().getX())/2,
-                    (Graphs.Field.getPath(i).getFrom().getY() + Graphs.Field.getPath(i).getTo().getY())/2,
-                    Integer.toString(Graphs.Field.getPath(i).getWeight()), 1, 1, 1);
+                    (BellmanFord.Graph.getPath(i).getFrom().getX() + BellmanFord.Graph.getPath(i).getTo().getX())/2,
+                    (BellmanFord.Graph.getPath(i).getFrom().getY() + BellmanFord.Graph.getPath(i).getTo().getY())/2,
+                    Integer.toString(BellmanFord.Graph.getPath(i).getWeight()), 1, 1, 1);
         }
     }
 }

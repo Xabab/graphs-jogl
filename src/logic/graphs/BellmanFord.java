@@ -8,13 +8,13 @@ package logic.graphs;
 import java.util.ArrayList;
 import java.util.List;
 import logic.Mode;
-import logic.graphs.elements.Decor;
+import renderer.render.Decor;
 import logic.graphs.elements.Node;
 import logic.graphs.elements.Path;
 
-public class Graphs {
+public class BellmanFord {
 
-    public static class Field {
+    public static class Graph {
         private static final List<Node> nodes = new ArrayList<>();
         private static final List<Path> paths = new ArrayList<>();
         private static Node path_add_first_point_temp;
@@ -148,7 +148,7 @@ public class Graphs {
             Mode.setMode(Mode.MODE.PROC);
 
             Thread thready = new Thread(() -> {
-                for (Node n : Field.nodes) {
+                for (Node n : Graph.nodes) {
                     n.setCost(1000000);
                 }
                 success = true;
@@ -162,10 +162,10 @@ public class Graphs {
 
                 System.out.println("relaxing");
 
-                for (int iteration = 0; iteration < Field.nodes.size(); iteration++) {
+                for (int iteration = 0; iteration < Graph.nodes.size(); iteration++) {
                     synchronized (Thread.class) {outerIterationsCurrent++;}
                     synchronized (Thread.class) {innerIterationsCurrent = 0;}
-                    for (Path p : Field.paths) {
+                    for (Path p : Graph.paths) {
                         synchronized (Thread.class) {innerIterationsCurrent++;}
 
                         System.out.println("iteration");
@@ -183,7 +183,7 @@ public class Graphs {
 
                         relaxed = relax(p);
                         if(relaxed) p.getTo().setParent(p.getFrom());
-                        if ((iteration == (Field.nodes.size() - 1)) && relaxed) negativeCycle = true;
+                        if ((iteration == (Graph.nodes.size() - 1)) && relaxed) negativeCycle = true;
 
                         try {
                             //System.out.println(Thread.currentThread().toString());
@@ -204,7 +204,7 @@ public class Graphs {
                 }
 
                 if (!success || negativeCycle){
-                    for (Path p: Field.paths){
+                    for (Path p: Graph.paths){
                         p.setColor(Path.defaultColor);
                     }
                     if (negativeCycle) {
@@ -214,7 +214,7 @@ public class Graphs {
 
                         System.out.println("negative");
 
-                        for(Node n: Field.nodes) {
+                        for(Node n: Graph.nodes) {
                             n.setCost(0);
                             n.setParent(null);
 
@@ -225,10 +225,10 @@ public class Graphs {
 
                         Node cycleCheck = null;
 
-                        Label: for (int iteration = 0; iteration < Field.nodes.size(); iteration++) {
+                        Label: for (int iteration = 0; iteration < Graph.nodes.size(); iteration++) {
                             synchronized (Thread.class) {outerIterationsCurrent++;}
                             synchronized (Thread.class) {innerIterationsCurrent = 0;}
-                            for (Path p : Field.paths) {
+                            for (Path p : Graph.paths) {
                                 synchronized (Thread.class) {innerIterationsCurrent++;}
 
                                 System.out.println("negative iteration");
@@ -254,10 +254,10 @@ public class Graphs {
                                     e.printStackTrace();
                                 }
 
-                                cycleCheck = Field.nodes.get(iteration);
+                                cycleCheck = Graph.nodes.get(iteration);
                                 while(cycleCheck.getParent() != null){
                                     cycleCheck = cycleCheck.getParent();
-                                    if (cycleCheck == Field.nodes.get(iteration)) break Label;
+                                    if (cycleCheck == Graph.nodes.get(iteration)) break Label;
                                 }
                                 cycleCheck = null;
                             }
@@ -268,9 +268,9 @@ public class Graphs {
                         Node temp = cycleCheck.getParent();
                         if(temp != null){
                             do {
-                                Field.findPath(temp.getParent(), temp).setColor(Decor.COLOR.BLACK);
-                                Field.findPath(temp.getParent(), temp).setDecorColor(Decor.COLOR.BLACK);
-                                Field.findPath(temp.getParent(), temp).setDecor(Decor.DEC_TYPE.GLOW);
+                                Graph.findPath(temp.getParent(), temp).setColor(Decor.COLOR.BLACK);
+                                Graph.findPath(temp.getParent(), temp).setDecorColor(Decor.COLOR.BLACK);
+                                Graph.findPath(temp.getParent(), temp).setDecor(Decor.DEC_TYPE.GLOW);
                                 temp = temp.getParent();
                             } while (temp != cycleCheck.getParent());
                         }
@@ -282,15 +282,16 @@ public class Graphs {
                     if(finish != null) {
                         Node tmp = finish;
                         while (tmp.getParent() != null) {
-                            Field.findPath(tmp.getParent(), tmp).setColor(Decor.COLOR.GREEN);
-                            Field.findPath(tmp.getParent(), tmp).setDecorColor(Decor.COLOR.GREEN);
-                            Field.findPath(tmp.getParent(), tmp).setDecor(Decor.DEC_TYPE.GLOW);
+                            Graph.findPath(tmp.getParent(), tmp).setColor(Decor.COLOR.GREEN);
+                            Graph.findPath(tmp.getParent(), tmp).setDecorColor(Decor.COLOR.GREEN);
+                            Graph.findPath(tmp.getParent(), tmp).setDecor(Decor.DEC_TYPE.GLOW);
                             tmp = tmp.getParent();
                         }
                     }
                 }
 
                 if (negativeCycle) Mode.setMode(Mode.MODE.NEGATIVE);
+                else if (finish == null) Mode.setMode(Mode.MODE.START_ONLY);
                 else if (!success) Mode.setMode(Mode.MODE.FAIL);
                 else Mode.setMode(Mode.MODE.DONE);
             });
@@ -303,11 +304,11 @@ public class Graphs {
     }
 
     public static void resetDecorAndColor(){
-        for (Path p : Field.paths) {
+        for (Path p : Graph.paths) {
             p.setDecor(Decor.DEC_TYPE.NONE);
             p.setColor(Path.defaultColor);
         }
-        for(Node n: Field.nodes){
+        for(Node n: Graph.nodes){
             n.setDecor(Decor.DEC_TYPE.NONE);
             n.setColor(Node.defaultColor);
         }

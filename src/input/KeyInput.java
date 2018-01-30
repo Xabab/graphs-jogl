@@ -10,7 +10,7 @@ import com.jogamp.newt.event.KeyEvent;
 import com.jogamp.newt.event.KeyListener;
 import engine.GameLoop;
 import logic.Mode;
-import logic.graphs.Graphs;
+import logic.graphs.BellmanFord;
 import renderer.render.Shapes;
 
 /**
@@ -64,7 +64,7 @@ public class KeyInput implements KeyListener{
     private static void weightEnter() {
         if(!weight_temp.isEmpty() && !weight_temp.equals("-")){
             System.out.println(Integer.parseInt(weight_temp));
-            Graphs.Field.weightEnter(weight_temp);
+            BellmanFord.Graph.weightEnter(weight_temp);
             weight_temp = "";
         }
     }

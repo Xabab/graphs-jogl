@@ -1,8 +1,8 @@
 
-package logic.graphs.elements;
+package renderer.render;
 
-import static logic.graphs.elements.Decor.COLOR.WHITE;
-import static logic.graphs.elements.Decor.DEC_TYPE.NONE;                                 //?
+import static renderer.render.Decor.COLOR.WHITE;
+import static renderer.render.Decor.DEC_TYPE.NONE;                                 //?
 
 
 public class Decor {

@@ -5,11 +5,13 @@
  */
 package logic.graphs.elements;
 
+import renderer.render.Decor;
+
 /**
  *
  * @author xabab
  */
-public class Node extends Decor{
+public class Node extends Decor {
     public static final int SIZE = 15;
 
     private Node parent;

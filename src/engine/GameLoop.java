@@ -7,7 +7,7 @@ package engine;
 
 import input.KeyInput;
 import logic.Mode;
-import logic.graphs.Graphs;
+import logic.graphs.BellmanFord;
 import logic.graphs.elements.Path;
 import renderer.Window;
 import renderer.render.gui.Cursor;
@@ -52,7 +52,7 @@ public class GameLoop {
 
         //draw adding weight effect
         if (Mode.getMode() == Mode.MODE.WEIGHT_ADD) {
-            Path p = Graphs.Field.getWeightPathTemp();
+            Path p = BellmanFord.Graph.getWeightPathTemp();
             Shapes.drawCircle(
                     (p.getFrom().getX() + p.getTo().getX()) / 2,
                     (p.getFrom().getY() + p.getTo().getY()) / 2,
@@ -70,22 +70,23 @@ public class GameLoop {
         Paths.drawWeights();
 
         //draw path cost on nodes if algorithm going
-        if(Mode.getMode() == Mode.MODE.DONE || Mode.getMode() == Mode.MODE.FAIL || Mode.getMode() == Mode.MODE.PROC ||  Mode.getMode() == Mode.MODE.NEGATIVE_SEARCH){
+        if(Mode.getMode() == Mode.MODE.DONE || Mode.getMode() == Mode.MODE.FAIL || Mode.getMode() == Mode.MODE.PROC ||
+                Mode.getMode() == Mode.MODE.NEGATIVE_SEARCH || Mode.getMode() == Mode.MODE.START_ONLY){
             Nodes.drawCosts();
         }
 
         //draw iterations
         if(Mode.getMode() == Mode.MODE.PROC ){
             String out = "";
-            out = out.concat(Integer.toString(Graphs.getOuterIterationsCurrent()));
+            out = out.concat(Integer.toString(BellmanFord.getOuterIterationsCurrent()));
             out = out.concat("/");
-            out = out.concat(Integer.toString(Graphs.Field.getNodeArrSize()));
+            out = out.concat(Integer.toString(BellmanFord.Graph.getNodeArrSize()));
             Text.textWeight(200, 15, out, 1, 1, 1);
 
             out = "";
-            out = out.concat(Integer.toString(Graphs.getInnerIterationsCurrent()));
+            out = out.concat(Integer.toString(BellmanFord.getInnerIterationsCurrent()));
             out = out.concat("/");
-            out = out.concat(Integer.toString(Graphs.Field.getPathArrSize()));
+            out = out.concat(Integer.toString(BellmanFord.Graph.getPathArrSize()));
             Text.textWeight(240, 15, out, 1, 1, 1);
         }
 
@@ -105,8 +106,8 @@ public class GameLoop {
             case FAIL:
                 Text.textWeight(280, 15, "There is no path here.", 1, 1, 1);
                 break;
-
-
+            case START_ONLY:
+                Text.textWeight(280, 15, "Here is costs for all nodes.", 1, 1, 1);
         }
 
         //draw cursor

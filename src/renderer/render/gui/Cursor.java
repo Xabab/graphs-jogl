@@ -9,7 +9,7 @@ import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
 import input.MouseInfo;
 import logic.Mode;
-import logic.graphs.Graphs;
+import logic.graphs.BellmanFord;
 import logic.graphs.elements.Node;
 import renderer.render.Nodes;
 import renderer.render.Shapes;
@@ -32,7 +32,7 @@ public class Cursor {
         switch(Mode.getMode()){ //NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA, SEL_END, ALG
 
             case NODE_ADD:
-                if(Graphs.Field.nodeInRadiusB(MouseInfo.getX(), MouseInfo.getY(), Graphs.Field.DIST_BETW_NODES))
+                if(BellmanFord.Graph.nodeInRadiusB(MouseInfo.getX(), MouseInfo.getY(), BellmanFord.Graph.DIST_BETW_NODES))
                         gl.glColor3f(0.7f, 0.7f, 0.7f);                                                      //gray
                 else Nodes.applyColor(Node.defaultColor);
                 Shapes.drawCircle(MouseInfo.getX() - 10, MouseInfo.getY() - 10, 5, 8);

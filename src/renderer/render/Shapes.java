@@ -78,4 +78,18 @@ public class Shapes {
         gl.glEnd();
         gl.glFlush();
     }
+
+    public static void drawTriangle(int x1, int y1, int x2, int y2, int x3, int y3){
+        if(gl == null) return;
+
+        gl.glLineWidth(1);
+        gl.glBegin(GL2.GL_POLYGON);
+        {
+            gl.glVertex2i(x1, y1);
+            gl.glVertex2i(x2, y2);
+            gl.glVertex2i(x3, y3);
+        }
+        gl.glEnd();
+        gl.glFlush();
+    }
 }

@@ -8,7 +8,7 @@ package renderer.render.gui;
 import logic.Mode;
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-import logic.graphs.Graphs;
+import logic.graphs.BellmanFord;
 import renderer.render.Shapes;
 import renderer.render.Text;
 
@@ -37,10 +37,10 @@ public class Gui {
                 public void onClick() { Mode.setMode(Mode.MODE.SEL_END); }
             },
             new Button(10, 180, 60, 20, 0f, 0f, 0f, "Start") {
-                public void onClick() { if(Mode.getMode() != Mode.MODE.NEGATIVE_SEARCH || Mode.getMode() != Mode.MODE.PROC) Graphs.findPath(); }
+                public void onClick() { if(Mode.getMode() != Mode.MODE.NEGATIVE_SEARCH || Mode.getMode() != Mode.MODE.PROC) BellmanFord.findPath(); }
             },
             new Button(10, 210, 60, 20, 0f, 0f, 0f, ">>") {
-                public void onClick() { Graphs.fastForward(); }
+                public void onClick() { BellmanFord.fastForward(); }
             }
 
     };

@@ -7,8 +7,7 @@ package renderer.render;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.GLAutoDrawable;
-import logic.graphs.Graphs;
-import logic.graphs.elements.Decor;
+import logic.graphs.BellmanFord;
 import logic.graphs.elements.Node;
 
 /**
@@ -24,18 +23,18 @@ public class Nodes {
 
     public static void drawNodes(){
         if(gl == null) return;
-        for(int i = 0; i < Graphs.Field.getNodeArrSize(); i++){
-            if(Graphs.Field.getNode(i).getDecor() == Decor.DEC_TYPE.GLOW) {
-                applyDecorColor(Graphs.Field.getNode(i).getDecorColor());
-                Shapes.drawCircle(Graphs.Field.getNode(i).getX(), Graphs.Field.getNode(i).getY(), (int) (Node.SIZE * 1.3), 16);
+        for(int i = 0; i < BellmanFord.Graph.getNodeArrSize(); i++){
+            if(BellmanFord.Graph.getNode(i).getDecor() == Decor.DEC_TYPE.GLOW) {
+                applyDecorColor(BellmanFord.Graph.getNode(i).getDecorColor());
+                Shapes.drawCircle(BellmanFord.Graph.getNode(i).getX(), BellmanFord.Graph.getNode(i).getY(), (int) (Node.SIZE * 1.3), 16);
             }
 
-            if(Graphs.getStart() == Graphs.Field.getNode(i)) Graphs.Field.getNode(i).setColor(Decor.COLOR.GREEN);
-            if(Graphs.getFinish() == Graphs.Field.getNode(i)) Graphs.Field.getNode(i).setColor(Decor.COLOR.RED);
+            if(BellmanFord.getStart() == BellmanFord.Graph.getNode(i)) BellmanFord.Graph.getNode(i).setColor(Decor.COLOR.GREEN);
+            if(BellmanFord.getFinish() == BellmanFord.Graph.getNode(i)) BellmanFord.Graph.getNode(i).setColor(Decor.COLOR.RED);
 
-            applyColor(Graphs.Field.getNode(i).getColor());
-            //if(Graphs.Field.getNode(i) == null) continue;                                                                     //hack
-            Shapes.drawCircle(Graphs.Field.getNode(i).getX(), Graphs.Field.getNode(i).getY(), Node.SIZE, 16);
+            applyColor(BellmanFord.Graph.getNode(i).getColor());
+            //if(BellmanFord.Graph.getNode(i) == null) continue;                                                                     //hack
+            Shapes.drawCircle(BellmanFord.Graph.getNode(i).getX(), BellmanFord.Graph.getNode(i).getY(), Node.SIZE, 16);
         }
 
 
@@ -88,9 +87,9 @@ public class Nodes {
     public static void drawCosts() {
         if (gl == null) return;
         Node n;
-        for (int i = 0; i < Graphs.Field.getNodeArrSize(); i++) {
-            n = Graphs.Field.getNode(i);
-            if(n.getCost() == 1000000) {
+        for (int i = 0; i < BellmanFord.Graph.getNodeArrSize(); i++) {
+            n = BellmanFord.Graph.getNode(i);
+            if(n.getCost() > 900000) {
                 Text.textWeight(n.getX(), n.getY(), "inf", 0, 0, 0);
             }
             else {

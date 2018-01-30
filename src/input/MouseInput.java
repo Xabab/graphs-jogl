@@ -9,7 +9,8 @@ import com.jogamp.newt.event.MouseEvent;
 import com.jogamp.newt.event.MouseListener;
 import logic.Mode;
 import static logic.Mode.MODE.*;
-import logic.graphs.Graphs;
+
+import logic.graphs.BellmanFord;
 import renderer.render.gui.Gui;
 import renderer.render.gui.Button;
 
@@ -33,22 +34,22 @@ public class MouseInput implements MouseListener {
             //  case mode: do things
             switch(Mode.getMode()){ //NODE_ADD, NODE_DELETE, PATH_ADD, PATH_ADD_SEC, SEL_STA, SEL_END, ALG
                 case NODE_ADD:
-                    Graphs.Field.addNode(e.getX(), e.getY());
+                    BellmanFord.Graph.addNode(e.getX(), e.getY());
                     break;
                 case NODE_DELETE:
-                    Graphs.Field.deleteNode(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
+                    BellmanFord.Graph.deleteNode(BellmanFord.Graph.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case PATH_ADD:
-                    Graphs.Field.addPathFirstNode(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
+                    BellmanFord.Graph.addPathFirstNode(BellmanFord.Graph.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case PATH_ADD_SEC:
-                    Graphs.Field.addPathSecondNode(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
+                    BellmanFord.Graph.addPathSecondNode(BellmanFord.Graph.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case SEL_STA:
-                    Graphs.setStart(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
+                    BellmanFord.setStart(BellmanFord.Graph.nodeInRadiusN(e.getX(), e.getY()));
                     break;
                 case SEL_END:
-                    Graphs.setFinish(Graphs.Field.nodeInRadiusN(e.getX(), e.getY()));
+                    BellmanFord.setFinish(BellmanFord.Graph.nodeInRadiusN(e.getX(), e.getY()));
                     break;
         }
 }
